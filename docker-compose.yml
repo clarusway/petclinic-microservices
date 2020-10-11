@@ -1,5 +1,4 @@
 version: '2'
-
 services:
   config-server:
     image: springcommunity/spring-petclinic-config-server
@@ -7,7 +6,6 @@ services:
     mem_limit: 512M
     ports:
      - 8888:8888
-
   discovery-server:
     image: springcommunity/spring-petclinic-discovery-server
     container_name: discovery-server
@@ -17,7 +15,6 @@ services:
     entrypoint: ["./dockerize","-wait=tcp://config-server:8888","-timeout=60s","--","java", "-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
     ports:
      - 8761:8761
-
   customers-service:
     image: springcommunity/spring-petclinic-customers-service
     container_name: customers-service
@@ -28,7 +25,6 @@ services:
     entrypoint: ["./dockerize","-wait=tcp://discovery-server:8761","-timeout=60s","--","java", "-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
     ports:
     - 8081:8081
-
   visits-service:
     image: springcommunity/spring-petclinic-visits-service
     container_name: visits-service
@@ -39,7 +35,6 @@ services:
     entrypoint: ["./dockerize","-wait=tcp://discovery-server:8761","-timeout=60s","--","java", "-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
     ports:
      - 8082:8082
-
   vets-service:
     image: springcommunity/spring-petclinic-vets-service
     container_name: vets-service
@@ -50,7 +45,6 @@ services:
     entrypoint: ["./dockerize","-wait=tcp://discovery-server:8761","-timeout=60s","--","java", "-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
     ports:
      - 8083:8083
-
   api-gateway:
     image: springcommunity/spring-petclinic-api-gateway
     container_name: api-gateway
@@ -61,7 +55,6 @@ services:
     entrypoint: ["./dockerize","-wait=tcp://discovery-server:8761","-timeout=60s","--","java", "-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
     ports:
      - 8080:8080
-
   tracing-server:
     image: openzipkin/zipkin
     container_name: tracing-server
@@ -70,7 +63,6 @@ services:
     - JAVA_OPTS=-XX:+UnlockExperimentalVMOptions -Djava.security.egd=file:/dev/./urandom
     ports:
      - 9411:9411
-
   admin-server:
     image: springcommunity/spring-petclinic-admin-server
     container_name: admin-server
@@ -81,7 +73,6 @@ services:
     entrypoint: ["./dockerize","-wait=tcp://discovery-server:8761","-timeout=60s","--","java", "-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
     ports:
      - 9090:9090
-
   hystrix-dashboard:
     image: springcommunity/spring-petclinic-hystrix-dashboard
     container_name: hystrix-dashboard
@@ -92,16 +83,13 @@ services:
     entrypoint: ["./dockerize","-wait=tcp://discovery-server:8761","-timeout=60s","--","java", "-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
     ports:
      - 7979:7979
-
   ## Grafana / Prometheus
-
   grafana-server:
     build: ./docker/grafana
     container_name: grafana-server
     mem_limit: 256M
     ports:
     - 3000:3000
-
   prometheus-server:
     build: ./docker/prometheus
     container_name: prometheus-server
