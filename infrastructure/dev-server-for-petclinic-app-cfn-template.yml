@@ -70,7 +70,7 @@ Resources:
     Type: "AWS::EC2::LaunchTemplate"
     Properties:
       LaunchTemplateData:
-        ImageId: ami-038b5c5d2ad6a5090
+        ImageId: ami-0947d2ba12ee1ff75
         InstanceType: t2.medium
         KeyName: !Ref KeyPairName
         SecurityGroupIds:
