@@ -94,6 +94,7 @@ Resources:
             sudo yum install java-11-amazon-corretto -y
             # install Git
             sudo yum install git -y
+            cd /home/ec2-user
             git clone https://github.com/Edipyanik/microservices-ci-cd-pipeline-with-petclinic-app.git
             git fetch
             git checkout dev
