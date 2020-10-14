@@ -2,19 +2,16 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.1.1.RELEASE</version>
     </parent>
-
     <groupId>org.springframework.samples</groupId>
     <artifactId>spring-petclinic-microservices</artifactId>
     <version>2.1.2</version>
     <name>${project.artifactId}</name>
     <packaging>pom</packaging>
-
     <modules>
         <module>spring-petclinic-admin-server</module>
         <module>spring-petclinic-customers-service</module>
@@ -25,24 +22,19 @@
         <module>spring-petclinic-api-gateway</module>
         <module>spring-petclinic-hystrix-dashboard</module>
     </modules>
-
     <properties>
         <java.version>11</java.version>
         <assertj.version>3.11.1</assertj.version>
-
         <spring-boot.version>2.1.2.RELEASE</spring-boot.version>
         <spring-cloud.version>Greenwich.RELEASE</spring-cloud.version>
         <micrometer.version>1.0.5</micrometer.version>
-
         <maven-surefire-plugin.version>2.22.0</maven-surefire-plugin.version>
-
         <docker.image.prefix>springcommunity</docker.image.prefix>
         <docker.image.exposed.port>9090</docker.image.exposed.port>
         <docker.image.dockerfile.dir>${basedir}</docker.image.dockerfile.dir>
         <docker.image.dockerize.version>v0.6.1</docker.image.dockerize.version>
         <docker.plugin.version>1.2.0</docker.plugin.version>
     </properties>
-
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -70,10 +62,8 @@
                 <version>${assertj.version}</version>
                 <scope>test</scope>
             </dependency>
-
         </dependencies>
     </dependencyManagement>
-
     <profiles>
         <profile>
             <id>springboot</id>
@@ -108,7 +98,6 @@
                             </execution>
                         </executions>
                     </plugin>
-
                     <!-- Spring Boot Actuator displays build-related information if a META-INF/build-info.properties file is present -->
                     <plugin>
                         <groupId>pl.project13.maven</groupId>
@@ -129,11 +118,29 @@
                             <failOnNoGitDirectory>false</failOnNoGitDirectory>
                         </configuration>
                     </plugin>
+                    <plugin>
+                        <groupId>org.jacoco</groupId>
+                        <artifactId>jacoco-maven-plugin</artifactId>
+                        <version>0.8.2</version>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>prepare-agent</goal>
+                                </goals>
+                            </execution>
+                            <!-- attached to Maven test phase -->
+                            <execution>
+                                <id>report</id>
+                                <phase>test</phase>
+                                <goals>
+                                    <goal>report</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
                 </plugins>
             </build>
-
         </profile>
-
         <profile>
             <id>buildDocker</id>
             <build>
@@ -175,7 +182,6 @@
             </build>
         </profile>
     </profiles>
-
     <repositories>
         <repository>
             <id>repository.spring.milestone</id>
@@ -183,5 +189,4 @@
             <url>http://repo.spring.io/milestone</url>
         </repository>
     </repositories>
-
 </project>
