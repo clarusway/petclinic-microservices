@@ -26,11 +26,12 @@ public class PetTest {
     @Test
     public void testBirthDate(){
         //Arrange
-        Pet pet = new Pet();
+        Pet pet = new Pet()
         Date bd = new Date();
         //Act
         pet.setBirthDate(bd);
         //Assert
         assertEquals(bd,pet.getBirthDate());
     }
+    
 }
