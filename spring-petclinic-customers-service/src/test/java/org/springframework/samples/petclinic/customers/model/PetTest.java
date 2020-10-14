@@ -17,7 +17,11 @@ public class PetTest {
         //Arrange
         Pet pet = new Pet();
         Owner owner = new Owner();
+<<<<<<< HEAD
         owner.setFirstName("Call");
+=======
+        owner.setFirstName("Call2");
+>>>>>>> feature/msp-9
         //Act
         pet.setOwner(owner);
         //Assert
@@ -26,12 +30,19 @@ public class PetTest {
     @Test
     public void testBirthDate(){
         //Arrange
+<<<<<<< HEAD
         Pet pet = new Pet()
+=======
+        Pet pet = new Pet();
+>>>>>>> feature/msp-9
         Date bd = new Date();
         //Act
         pet.setBirthDate(bd);
         //Assert
         assertEquals(bd,pet.getBirthDate());
     }
+<<<<<<< HEAD
     
+=======
+>>>>>>> feature/msp-9
 }

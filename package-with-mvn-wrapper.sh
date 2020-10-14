@@ -1,2 +1,2 @@
 # package-with-mvn-wrapper
-./mvnw clean package
+./mvnw clean packagegit
