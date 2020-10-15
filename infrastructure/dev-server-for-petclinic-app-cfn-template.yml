@@ -79,21 +79,21 @@ Resources:
           Fn::Base64: |
             #! /bin/bash
             # update os
-            sudo yum update -y
+            yum update -y
             # set hostname as petclinic-dev-server
-            sudo hostnamectl set-hostname petclinic-dev-server
+            hostnamectl set-hostname petclinic-dev-server
             # install docker
-            sudo amazon-linux-extras install docker -y
-            sudo systemctl start docker
-            sudo systemctl enable docker
-            sudo usermod -a -G docker ec2-user
+            amazon-linux-extras install docker -y
+            systemctl start docker
+            systemctl enable docker
+            usermod -a -G docker ec2-user
             # install docker compose
-            sudo curl -L "https://github.com/docker/compose/releases/download/1.26.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-            sudo chmod +x /usr/local/bin/docker-compose
+            curl -L "https://github.com/docker/compose/releases/download/1.26.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+            chmod +x /usr/local/bin/docker-compose
             # install JDK 11
-            sudo yum install java-11-amazon-corretto -y
+            yum install java-11-amazon-corretto -y
             # install Git
-            sudo yum install git -y
+            yum install git -y
             cd /home/ec2-user
             git clone https://github.com/Edipyanik/microservices-ci-cd-pipeline-with-petclinic-app.git
             git fetch
