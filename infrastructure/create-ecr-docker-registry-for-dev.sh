@@ -1,3 +1,5 @@
+echo $PATH
+
 PATH="$PATH:/usr/local/bin"
 APP_REPO_NAME="edip-repo/petclinic-app-dev"
 AWS_REGION="us-east-1"
