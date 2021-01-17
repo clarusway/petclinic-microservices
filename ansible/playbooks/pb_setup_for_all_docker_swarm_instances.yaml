@@ -1,0 +1,53 @@
+---
+- hosts: all
+  tasks:
+  - name: update os
+    yum:
+      name: '*'
+      state: present
+  - name: install docker
+    command: amazon-linux-extras install docker=latest -y
+  - name: start docker
+    service: 
+      name: docker
+      state: started
+      enabled: yes
+  - name: add ec2-user to docker group
+    shell: "usermod -a -G docker ec2-user"
+  - name: Install Docker Compose (if configured).
+    get_url:
+      url: https://github.com/docker/compose/releases/download/1.26.2/docker-compose-Linux-x86_64
+      dest: /usr/local/bin/docker-compose
+      mode: 0755
+  - name: uninstall aws cli v1
+    file:
+      path: /bin/aws
+      state: absent
+  - name: Download awscliv2 installer
+    unarchive:
+      src: https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip
+      dest: /tmp
+      remote_src: yes
+      creates: /tmp/aws
+      mode: 0755
+  - name: Run the installer.
+    command:
+    args:
+      cmd: "/tmp/aws/install"
+      creates: /usr/local/bin/aws
+  - name: install ecr credential helper
+    yum:
+      name: amazon-ecr-credential-helper
+      state: present
+  - name: Create folder for config file of ecr cred helper
+    file:
+      path: /home/ec2-user/.docker
+      state: directory
+      owner: "ec2-user"
+      mode: "g+rwx"
+  - name: create config file with content for ecr creds 
+    copy:
+      content: '{"credsStore":"ecr-login"}'
+      dest: /home/ec2-user/.docker/config.json
+      owner: "ec2-user"
+      mode: "g+rwx"

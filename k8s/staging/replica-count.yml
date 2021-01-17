@@ -1,0 +1,7 @@
+# replica-count.yml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-gateway
+spec:
+  replicas: 3

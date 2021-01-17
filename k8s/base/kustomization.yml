@@ -1,0 +1,49 @@
+resources:
+- admin-server-deployment.yaml
+- api-gateway-deployment.yaml
+- config-server-deployment.yaml
+- customers-service-deployment.yaml
+- discovery-server-deployment.yaml
+- grafana-server-deployment.yaml
+- hystrix-dashboard-deployment.yaml
+- prometheus-server-deployment.yaml
+- tracing-server-deployment.yaml
+- vets-service-deployment.yaml
+- visits-service-deployment.yaml
+- admin-server-service.yaml
+- api-gateway-service.yaml
+- config-server-service.yaml
+- customers-service-service.yaml
+- discovery-server-service.yaml
+- grafana-server-service.yaml
+- hystrix-dashboard-service.yaml
+- prometheus-server-service.yaml
+- tracing-server-service.yaml
+- vets-service-service.yaml
+- visits-service-service.yaml
+- api-gateway-ingress.yaml
+- customers-service-ingress.yaml
+- vets-service-ingress.yaml
+- visits-service-ingress.yaml
+
+images:
+- name: IMAGE_TAG_CONFIG_SERVER
+  newName: "testing-image-1"
+- name: IMAGE_TAG_DISCOVERY_SERVER
+  newName: "testing-image-2"
+- name: IMAGE_TAG_CUSTOMERS_SERVICE
+  newName: "testing-image-3"
+- name: IMAGE_TAG_VISITS_SERVICE
+  newName: "testing-image-4"
+- name: IMAGE_TAG_VETS_SERVICE
+  newName: "testing-image-5"
+- name: IMAGE_TAG_API_GATEWAY
+  newName: "testing-image-6"
+- name: IMAGE_TAG_ADMIN_SERVER
+  newName: "testing-image-7"
+- name: IMAGE_TAG_HYSTRIX_DASHBOARD
+  newName: "testing-image-8"
+- name: IMAGE_TAG_GRAFANA_SERVICE
+  newName: "testing-image-9"
+- name: IMAGE_TAG_PROMETHEUS_SERVICE
+  newName: "testing-image-10"

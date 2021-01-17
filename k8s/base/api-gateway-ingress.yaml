@@ -1,0 +1,22 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f docker-compose.yml -o base
+    kompose.image-pull-secret: regcred
+    kompose.service.expose: petclinic.clarusway.us
+    kompose.version: 1.22.0 (955b78124)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: api-gateway
+  name: api-gateway
+spec:
+  rules:
+    - host: petclinic.clarusway.us
+      http:
+        paths:
+          - backend:
+              serviceName: api-gateway
+              servicePort: 8080
+status:
+  loadBalancer: {}

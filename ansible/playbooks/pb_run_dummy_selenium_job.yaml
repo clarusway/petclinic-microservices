@@ -1,0 +1,10 @@
+---
+- hosts: all
+  tasks:
+  - name: run dummy selenium job
+    shell: "docker run --rm -v {{ workspace }}:{{ workspace }} -w {{ workspace }} callahanclarus/selenium-py-chrome:latest python {{ item }}"
+    with_fileglob: "{{ workspace }}/selenium-jobs/dummy*.py"
+    register: output
+  - name: show results
+    debug: msg="{{ item.stdout }}"
+    with_items: "{{ output.results }}"
